@@ -256,7 +256,7 @@ function submitJob(taskOptions: TaskOptions): Q.Promise<string> {
                     } else {
                         defer.reject(err);
                     }
-                } else if (httpResponse.statusCode != 201) {
+                } else if (httpResponse.statusCode != 201 && httpResponse.statusCode != 302) {
                     defer.reject(getFullErrorMessage(httpResponse, 'Job creation failed.'));
                 } else {
                     const queueUri: string = addUrlSegment(httpResponse.headers.location, 'api/json');
